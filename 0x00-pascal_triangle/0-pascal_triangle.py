@@ -1,15 +1,38 @@
+#!/usr/bin/python3
+"""A Module to find Pascal's Triangle integers"""
+
+
 def pascal_triangle(n):
+    """A function to find Pascal's Triangle integers
+
+    n (int): The number of rows of Pascal's Triangle.
+
+    Returns:
+        Pascal_triangle (list): Binary string of the sum of a and b
+
+    """
+    pascal_triangle = list()
+
     if n <= 0:
-        return []
+        return pascal_triangle
 
-    triangle = [[1]]  # Initialize Pascal's triangle with the first row
+    # adds the first 1
+    if n > 0:
+        pascal_triangle.append([1])
 
-    for i in range(1, n):
-        row = [1]  # First element of each row is always 1
-        for j in range(1, i):
-            # Calculate each element of the row based on the previous row
-            row.append(triangle[i - 1][j - 1] + triangle[i - 1][j])
-        row.append(1)  # Last element of each row is always 1
-        triangle.append(row)
+    # adds the second line
+    if n > 1:
+        pascal_triangle.append([1, 1])
 
-    return triangle
+    for i in range(3, n+1):
+        pascal_triangle.append([0] * i)
+
+        # Sets first and last 1
+        pascal_triangle[i-1][0] = 1
+        pascal_triangle[i-1][i-1] = 1
+
+        # Calculates the middle numbers
+        for j in range(1, i-1):
+            pascal_triangle[i-1][j] = \
+                pascal_triangle[i-2][j-1] + pascal_triangle[i-2][j]
+    return pascal_triangle
