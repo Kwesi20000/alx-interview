@@ -5,11 +5,11 @@ import sys
 def print_msg(dict_sc, total_file_size):
     """
     Method to print statistics.
-    
+
     Args:
         dict_sc: Dictionary of status codes
         total_file_size: Total file size
-        
+
     Returns:
         None
     """
